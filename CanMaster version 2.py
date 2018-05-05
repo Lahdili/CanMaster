@@ -44,7 +44,41 @@ def signal_handler():
     Save()
     interface.destroy()
 
+def RemoveTrame(): #Commande RemoveTrame() permet de supprimer des trames de donnees
+   
+ global suppression_ID
+    
+ Removefenetre=Toplevel(interface) # Ssfenetre est une sous fenetre de interface
+ Removefenetre.geometry("260x60+300+300") #Dimension de la sous fenetre
+ Removefenetre.title("Suppression des Trames") #Titre de la sous fenetre
+    
+ label_nom_ID=Label(Removefenetre,text="ID (s) à supprimer (0x):").place(x=1,y=5)#Label qui donne le nom de L'ID
+ suppression_ID=Entry(Removefenetre)# Un entry pour ecrire le nom de l'ID
+    
+ Button(Removefenetre,text="Supprimer" , command=Suppression).place(x=120,y=30)#Button pour supprission des informations dans labelframe
+    
+ suppression_ID.place(x=130,y=5)#L'emplacement de nom de L'ID
 
+def Suppression():
+     global suppression_ID, liste_entry_ID
+    
+     id_list =suppression_ID.get().split(',')
+     for i in liste_entry_ID:
+         if i in id_list:
+             liste_entry_nom_ID.remove(liste_entry_nom_ID[liste_entry_ID.index(i)])
+             liste_varCheckbutton1.remove(liste_varCheckbutton1[liste_entry_ID.index(i)])
+             liste_varCheckbutton2.remove(liste_varCheckbutton2[liste_entry_ID.index(i)])
+             liste_entry_periode.remove(liste_entry_periode[liste_entry_ID.index(i)])
+             liste_data1.remove(liste_data1[liste_entry_ID.index(i)])
+             liste_data2.remove(liste_data2[liste_entry_ID.index(i)])
+             liste_data3.remove(liste_data3[liste_entry_ID.index(i)])
+             liste_data4.remove(liste_data4[liste_entry_ID.index(i)])
+             liste_data5.remove(liste_data5[liste_entry_ID.index(i)])
+             liste_data6.remove(liste_data6[liste_entry_ID.index(i)])
+             liste_data7.remove(liste_data7[liste_entry_ID.index(i)])
+             liste_data8.remove(liste_data8[liste_entry_ID.index(i)])
+             liste_entry_ID.remove(i)
+     signal_handler()
 
 def AjoutTrame(): #Commande AjoutTrame() permet d'ajouter des trames de donnees
     
@@ -320,7 +354,7 @@ Connection_Label.place(x=270,y=0 ,width=38,height=21)#Label Status
 
 Button(Setting_labelframe, text='ADD', command=AjoutTrame).place(x=314,y=0,width=53,height=21)#Boutton pour l'ajout des trames de donnes
 
-Button(Setting_labelframe, text='REMOVE', command=AjoutTrame).place(x=370,y=0,width=55,height=21)#Boutton pour l'ajout des trames de donnes
+Button(Setting_labelframe, text='REMOVE', command=RemoveTrame).place(x=370,y=0,width=55,height=21)#Boutton pour l'ajout des trames de donnes
 
 
 # API
